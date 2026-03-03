@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "bblcore:upgrade_base"
+            "items": "minecraft:iron_ingot"
           }
         ]
       },

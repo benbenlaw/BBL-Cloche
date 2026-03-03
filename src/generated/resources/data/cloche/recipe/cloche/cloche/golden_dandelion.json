@@ -1,0 +1,13 @@
+{
+  "type": "cloche:cloche",
+  "duration": 1200,
+  "results": [
+    {
+      "item": {
+        "id": "minecraft:golden_dandelion"
+      }
+    }
+  ],
+  "seed": "minecraft:golden_dandelion",
+  "soil": "minecraft:gold_block"
+}

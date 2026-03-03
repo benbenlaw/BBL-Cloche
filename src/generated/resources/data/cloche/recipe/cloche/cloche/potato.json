@@ -4,14 +4,12 @@
   "results": [
     {
       "item": {
-        "count": 1,
         "id": "minecraft:potato"
       }
     },
     {
       "chance": 0.1,
       "item": {
-        "count": 1,
         "id": "minecraft:poisonous_potato"
       }
     }

@@ -11,14 +11,12 @@
     {
       "chance": 0.2,
       "item": {
-        "count": 1,
         "id": "minecraft:birch_sapling"
       }
     },
     {
       "chance": 0.1,
       "item": {
-        "count": 1,
         "id": "minecraft:stick"
       }
     }

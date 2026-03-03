@@ -4,14 +4,12 @@
   "results": [
     {
       "item": {
-        "count": 1,
         "id": "minecraft:beetroot"
       }
     },
     {
       "chance": 0.2,
       "item": {
-        "count": 1,
         "id": "minecraft:beetroot_seeds"
       }
     }

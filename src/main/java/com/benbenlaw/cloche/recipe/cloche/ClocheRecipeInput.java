@@ -1,4 +1,4 @@
-package com.benbenlaw.cloche.recipe.custom;
+package com.benbenlaw.cloche.recipe.cloche;
 
 import com.benbenlaw.core.block.entity.handler.item.InputItemHandler;
 import net.minecraft.world.item.ItemStack;

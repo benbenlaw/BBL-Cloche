@@ -5,14 +5,12 @@
     {
       "chance": 0.9,
       "item": {
-        "count": 1,
         "id": "minecraft:cactus"
       }
     },
     {
       "chance": 0.1,
       "item": {
-        "count": 1,
         "id": "minecraft:cactus_flower"
       }
     }

@@ -5,14 +5,13 @@ import com.benbenlaw.cloche.block.custom.ClocheBlock;
 import com.benbenlaw.cloche.item.ClocheDataComponent;
 import com.benbenlaw.cloche.item.ClocheItems;
 import com.benbenlaw.cloche.item.util.CropData;
-import com.benbenlaw.cloche.recipe.ClocheRecipe;
+import com.benbenlaw.cloche.recipe.cloche.ClocheRecipe;
 import com.benbenlaw.cloche.recipe.ClocheRecipes;
-import com.benbenlaw.cloche.recipe.custom.ClocheRecipeInput;
+import com.benbenlaw.cloche.recipe.cloche.ClocheRecipeInput;
 import com.benbenlaw.cloche.screen.cloche.ClocheMenu;
 import com.benbenlaw.core.block.entity.SyncableBlockEntity;
 import com.benbenlaw.core.block.entity.handler.item.InputItemHandler;
 import com.benbenlaw.core.block.entity.handler.item.OutputItemHandler;
-import com.benbenlaw.core.recipe.ChanceResult;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
@@ -162,7 +161,7 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
     private List<ItemStack> getActualOutputs(ClocheRecipe recipe) {
         if (level == null) return List.of();
 
-        List<ItemStack> outputs = new ArrayList<>(recipe.rollResults(level.random));
+        List<ItemStack> outputs = new ArrayList<>(recipe.rollResults(level.getRandom()));
 
         boolean hasNoSeedUpgrade = hasUpgrade(ClocheItems.NO_SEEDS_UPGRADE.get());
         boolean hasShearsUpgrade = hasUpgrade(ClocheItems.SHEARS_UPGRADE.get());
@@ -170,7 +169,7 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
         int mainOutputUpgradeCount = countUpgrade(ClocheItems.MAIN_OUTPUT_UPGRADE.get());
 
         if (hasNoOtherDropsUpgrade && !outputs.isEmpty()) {
-            ItemStack main = recipe.getRollResults().getFirst().stack().copy();
+            ItemStack main = recipe.getRollResults().getFirst().template().create().copy();
             outputs.clear();
             outputs.add(main);
         }
@@ -196,15 +195,17 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
 
             main.setCount(main.getCount() * guaranteedMultiplier);
 
-            if (remainderChance > 0 && level.random.nextInt(100) < remainderChance) {
+            if (remainderChance > 0 && level.getRandom().nextInt(100) < remainderChance) {
                 main.grow(main.getCount());
             }
         }
 
         if (hasShearsUpgrade) {
-            ItemStack shears = recipe.shearsResult();
-            if (!shears.isEmpty()) {
-                outputs.add(shears.copy());
+            if (recipe.shearsResult().isPresent()) {
+                ItemStack shears = recipe.shearsResult().get().create();
+                if (!shears.isEmpty()) {
+                    outputs.add(shears.copy());
+                }
             }
         }
 
@@ -237,7 +238,7 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
         if (level == null || mutationUpgradeCount <= 0) return;
 
         int CHANCE_OF_MUTATION = 25; //Chance per upgrade as a percentage
-        if (level.random.nextInt(100) >= CHANCE_OF_MUTATION) return;
+        if (level.getRandom().nextInt(100) >= CHANCE_OF_MUTATION) return;
 
         ItemStack original = inputHandler.getResource(SEED_SLOT).toStack();
         if (original.isEmpty()) return;
@@ -249,7 +250,7 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
         int speedModifier = cropData.speedModifier();
 
         // Randomly pick which stat to improve
-        if (level.random.nextBoolean()) {
+        if (level.getRandom().nextBoolean()) {
             outputMultiplier += 1;
         } else {
             speedModifier += 1;

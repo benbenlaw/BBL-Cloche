@@ -4,7 +4,7 @@
   "group": "cloche",
   "key": {
     "A": "#c:seeds",
-    "B": "bblcore:upgrade_base"
+    "B": "minecraft:iron_ingot"
   },
   "pattern": [
     " A ",
@@ -12,7 +12,6 @@
     " A "
   ],
   "result": {
-    "count": 1,
     "id": "cloche:no_seeds_upgrade"
   }
 }

@@ -1,7 +1,7 @@
 package com.benbenlaw.cloche.screen.cloche;
 
 import com.benbenlaw.cloche.block.entity.ClocheBlockEntity;
-import com.benbenlaw.cloche.recipe.ClocheRecipe;
+import com.benbenlaw.cloche.recipe.cloche.ClocheRecipe;
 import com.benbenlaw.cloche.recipe.ClocheRecipeCache;
 import com.benbenlaw.cloche.screen.ClocheMenus;
 import com.benbenlaw.cloche.util.ClocheTags;

@@ -1,5 +1,6 @@
 package com.benbenlaw.cloche.recipe;
 
+import com.benbenlaw.cloche.recipe.cloche.ClocheRecipe;
 import net.minecraft.resources.Identifier;
 
 import java.util.Collection;

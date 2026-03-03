@@ -1,7 +1,7 @@
 package com.benbenlaw.cloche.data.recipe;
 
 import com.benbenlaw.cloche.Cloche;
-import com.benbenlaw.cloche.recipe.ClocheRecipe;
+import com.benbenlaw.cloche.recipe.cloche.ClocheRecipe;
 import com.benbenlaw.core.recipe.ChanceResult;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRequirements;
@@ -13,8 +13,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import org.jetbrains.annotations.NotNull;
@@ -33,18 +33,18 @@ public class ClocheRecipeProvider implements RecipeBuilder {
     protected int duration;
     protected NonNullList<ChanceResult> results;
     protected final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
-    protected ItemStack shearsResult;
+    protected Optional<ItemStackTemplate> shearsResult;
 
-    public ClocheRecipeProvider(Ingredient seed, Ingredient soil, Ingredient catalyst, int duration, NonNullList<ChanceResult> results, ItemStack shearsResult) {
+    public ClocheRecipeProvider(Ingredient seed, Ingredient soil, Ingredient catalyst, int duration, NonNullList<ChanceResult> results, ItemStackTemplate shearsResult) {
         this.seed = seed;
         this.soil = soil;
         this.catalyst = Optional.ofNullable(catalyst);
         this.duration = duration;
         this.results = results;
-        this.shearsResult = shearsResult != null ? shearsResult : ItemStack.EMPTY;
+        this.shearsResult = Optional.ofNullable(shearsResult);
     }
 
-    public static ClocheRecipeProvider ClocheRecipeBuilder(Ingredient seed, Ingredient soil, Ingredient catalyst, int duration, NonNullList<ChanceResult> results, ItemStack shearsResult) {
+    public static ClocheRecipeProvider clocheRecipeBuilder(Ingredient seed, Ingredient soil, Ingredient catalyst, int duration, NonNullList<ChanceResult> results, ItemStackTemplate shearsResult) {
         return new ClocheRecipeProvider(seed, soil, catalyst, duration, results, shearsResult);
     }
     @Override
@@ -60,8 +60,12 @@ public class ClocheRecipeProvider implements RecipeBuilder {
     }
 
     @Override
-    public @NotNull Item getResult() {
-        return results.getFirst().stack().getItem();
+    public ResourceKey<Recipe<?>> defaultId() {
+        ItemStack stack = results.getFirst().template().create();
+        return ResourceKey.create(
+                Registries.RECIPE,
+                Cloche.identifier("cloche/" + stack.getItem().builtInRegistryHolder().key().identifier().getPath())
+        );
     }
 
     @Override

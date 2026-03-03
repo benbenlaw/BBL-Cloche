@@ -2,15 +2,12 @@ package com.benbenlaw.cloche.integration.jei;
 
 import com.benbenlaw.cloche.Cloche;
 import com.benbenlaw.cloche.block.ClocheBlocks;
-import com.benbenlaw.cloche.recipe.ClocheRecipe;
 import com.benbenlaw.cloche.recipe.ClocheRecipeCache;
-import com.benbenlaw.cloche.recipe.ClocheRecipes;
 import com.benbenlaw.cloche.screen.cloche.ClocheScreen;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.gui.drawable.IDrawableStatic;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.recipe.types.IRecipeType;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;

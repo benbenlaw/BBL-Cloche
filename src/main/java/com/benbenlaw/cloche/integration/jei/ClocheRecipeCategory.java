@@ -2,7 +2,7 @@ package com.benbenlaw.cloche.integration.jei;
 
 import com.benbenlaw.cloche.Cloche;
 import com.benbenlaw.cloche.block.ClocheBlocks;
-import com.benbenlaw.cloche.recipe.ClocheRecipe;
+import com.benbenlaw.cloche.recipe.cloche.ClocheRecipe;
 import com.benbenlaw.cloche.recipe.ClocheRecipeCache;
 import com.benbenlaw.core.recipe.ChanceResult;
 import com.benbenlaw.core.util.MouseUtil;
@@ -17,15 +17,11 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.recipe.types.IRecipeType;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
-import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
-import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -106,8 +102,8 @@ public class ClocheRecipeCategory implements IRecipeCategory<ClocheRecipe> {
         }
 
         List<ChanceResult> modifiedOutputs = new ArrayList<>(recipe.getRollResults());
-        if (!recipe.shearsResult().isEmpty()) {
-            modifiedOutputs.addLast(new ChanceResult(recipe.shearsResult(), 1.0f));
+        if (recipe.shearsResult().isPresent()) {
+            modifiedOutputs.addLast(new ChanceResult(ItemStackTemplate.fromNonEmptyStack(recipe.shearsResult().get().create()), 1.0f));
         }
 
         int size = modifiedOutputs.size();
@@ -124,7 +120,7 @@ public class ClocheRecipeCategory implements IRecipeCategory<ClocheRecipe> {
 
             int finalIndex = index;
             builder.addSlot(RecipeIngredientRole.OUTPUT, 67 + xOffset, yOffset)
-                    .add(modifiedOutputs.get(i).stack()).addRichTooltipCallback((slotView, tooltip) -> {
+                    .add(modifiedOutputs.get(i).template().create()).addRichTooltipCallback((slotView, tooltip) -> {
                         ChanceResult output = modifiedOutputs.get(finalIndex);
                         float chance = output.chance();
                         int displayChance = (int) (chance * 100);
@@ -133,11 +129,13 @@ public class ClocheRecipeCategory implements IRecipeCategory<ClocheRecipe> {
                             tooltip.add(Component.translatable("jei.cloche.main_output")
                                     .withStyle(ChatFormatting.GREEN));
                         }
-                        if (output.stack().is(recipe.shearsResult().getItem())) {
-                            tooltip.add(Component.translatable("jei.cloche.shears_result")
-                                    .withStyle(ChatFormatting.GREEN));
+                        if (recipe.shearsResult().isPresent()) {
+                            if (output.template().create().is(recipe.shearsResult().get().create().getItem())) {
+                                tooltip.add(Component.translatable("jei.cloche.shears_result")
+                                        .withStyle(ChatFormatting.GREEN));
+                            }
                         }
-                        if (recipe.seed().test(output.stack()) && finalIndex > 0) {
+                        if (recipe.seed().test(output.template().create()) && finalIndex > 0) {
                             tooltip.add(Component.translatable("jei.cloche.seeds_results")
                                     .withStyle(ChatFormatting.GREEN));
                         }

@@ -11,21 +11,18 @@
     {
       "chance": 0.5,
       "item": {
-        "count": 1,
         "id": "minecraft:warped_fungus"
       }
     },
     {
       "chance": 0.1,
       "item": {
-        "count": 1,
         "id": "minecraft:shroomlight"
       }
     },
     {
       "chance": 0.4,
       "item": {
-        "count": 1,
         "id": "minecraft:warped_wart_block"
       }
     }

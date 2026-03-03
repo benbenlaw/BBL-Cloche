@@ -2,6 +2,10 @@ Changelog BBL Cloche
 
 //TODO Upgrades and JEI Abstract plugin classes to BBL Core
 
+# 2.0.0
+- Updated to Minecraft 26.1
+- Re Run data gen to update recipes and add new golden dandelion recipe
+
 1.7.0
 - Added Mutation Upgrade, Has a 25% chance to mutate the input seed, Mutation make the crops grow faster and produce more
 - Added CropData internal system that handles mutations on crops

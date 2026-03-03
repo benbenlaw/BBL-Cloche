@@ -1,7 +1,7 @@
 package com.benbenlaw.cloche.event.recipe;
 
 import com.benbenlaw.cloche.Cloche;
-import com.benbenlaw.cloche.recipe.ClocheRecipe;
+import com.benbenlaw.cloche.recipe.cloche.ClocheRecipe;
 import com.benbenlaw.cloche.recipe.ClocheRecipeCache;
 import com.benbenlaw.cloche.recipe.ClocheRecipes;
 import net.minecraft.resources.Identifier;

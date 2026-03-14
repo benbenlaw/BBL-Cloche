@@ -35,8 +35,8 @@ public class Cloche{
         ClocheCreativeTab.CREATIVE_MODE_TABS.register(modEventBus);
         ClocheItems.ITEMS.register(modEventBus);
         ClocheDataComponent.COMPONENTS.register(modEventBus);
-        ClocheRecipes.SERIALIZER.register(modEventBus);
         ClocheRecipes.TYPES.register(modEventBus);
+        ClocheRecipes.SERIALIZER.register(modEventBus);
         ClocheMenus.MENUS.register(modEventBus);
 
         modEventBus.addListener(this::registerCapabilities);

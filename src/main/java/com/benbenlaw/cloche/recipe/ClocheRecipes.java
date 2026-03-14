@@ -3,6 +3,8 @@ package com.benbenlaw.cloche.recipe;
 import com.benbenlaw.cloche.Cloche;
 import com.benbenlaw.cloche.recipe.cloche.ClocheRecipe;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.neoforge.registries.DeferredRegister;

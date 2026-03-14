@@ -25,64 +25,6 @@ import static com.benbenlaw.cloche.block.entity.ClocheBlockEntity.*;
 
 public record ClocheRecipe(Ingredient seed, Ingredient soil, Optional<Ingredient> catalyst, int duration, NonNullList<ChanceResult> results, Optional<ItemStackTemplate> shearsResult) implements Recipe<RecipeInput> {
 
-    @Override
-    public boolean matches(RecipeInput container, @NotNull Level level) {
-
-        boolean needCatalyst = !catalyst.isEmpty();
-        if (needCatalyst) {
-            if (catalyst.get().test(container.getItem(CATALYST_SLOT))) {
-                return seed.test(container.getItem(SEED_SLOT)) && soil.test(container.getItem(SOIL_SLOT));
-            } else {
-                return false;
-            }
-        }
-
-        return seed.test(container.getItem(SEED_SLOT)) && soil.test(container.getItem(SOIL_SLOT));
-
-    }
-
-
-    @Override
-    public ItemStack assemble(RecipeInput recipeInput) {
-        return results.getFirst().template().create();
-    }
-
-
-    @Override
-    public @NotNull RecipeSerializer<? extends Recipe<RecipeInput>> getSerializer() {
-        return SERIALIZER;
-    }
-
-    @Override
-    public @NotNull RecipeType<? extends Recipe<RecipeInput>> getType() {
-        return TYPE;
-    }
-
-    @Override
-    public @NotNull PlacementInfo placementInfo() {
-        return PlacementInfo.NOT_PLACEABLE;
-    }
-
-    @Override
-    public @NotNull RecipeBookCategory recipeBookCategory() {
-        return RecipeBookCategories.CRAFTING_MISC;
-    }
-
-    @Override
-    public boolean isSpecial() {
-        return true;
-    }
-
-    @Override
-    public boolean showNotification() {
-        return false;
-    }
-
-    @Override
-    public String group() {
-        return "";
-    }
-
     public static final RecipeType<ClocheRecipe> TYPE = new RecipeType<>() {};
 
     public static final MapCodec<ClocheRecipe> CODEC = RecordCodecBuilder.mapCodec((instance) ->
@@ -173,6 +115,63 @@ public record ClocheRecipe(Ingredient seed, Ingredient soil, Optional<Ingredient
                 results.add(stack);
         }
         return results;
+    }
+
+    @Override
+    public boolean matches(RecipeInput container, @NotNull Level level) {
+
+        boolean needCatalyst = !catalyst.isEmpty();
+        if (needCatalyst) {
+            if (catalyst.get().test(container.getItem(CATALYST_SLOT))) {
+                return seed.test(container.getItem(SEED_SLOT)) && soil.test(container.getItem(SOIL_SLOT));
+            } else {
+                return false;
+            }
+        }
+
+        return seed.test(container.getItem(SEED_SLOT)) && soil.test(container.getItem(SOIL_SLOT));
+
+    }
+
+    //Boiler Plate
+    @Override
+    public ItemStack assemble(RecipeInput recipeInput) {
+        return results.getFirst().template().create();
+    }
+
+    @Override
+    public @NotNull RecipeSerializer<? extends Recipe<RecipeInput>> getSerializer() {
+        return SERIALIZER;
+    }
+
+    @Override
+    public @NotNull RecipeType<? extends Recipe<RecipeInput>> getType() {
+        return TYPE;
+    }
+
+    @Override
+    public @NotNull PlacementInfo placementInfo() {
+        return PlacementInfo.NOT_PLACEABLE;
+    }
+
+    @Override
+    public @NotNull RecipeBookCategory recipeBookCategory() {
+        return RecipeBookCategories.CRAFTING_MISC;
+    }
+
+    @Override
+    public boolean isSpecial() {
+        return true;
+    }
+
+    @Override
+    public boolean showNotification() {
+        return false;
+    }
+
+    @Override
+    public String group() {
+        return "";
     }
 }
 

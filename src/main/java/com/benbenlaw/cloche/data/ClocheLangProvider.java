@@ -38,7 +38,7 @@ public class ClocheLangProvider extends LanguageProvider {
         add("tooltip.cloche.upgrade_slot", "Upgrade Slot");
         add("tooltip.cloche.catalyst_slot_no_catalysts", "No loaded recipes use catalysts");
         add("tooltip.cloche.catalyst_slot", "Catalysts Slot");
-        add("tooltip.cloche.cloche", "Prevents all other drops except the main output");
+        add("tooltip.cloche.cloche", "Used to grow crops, can be upgraded with various upgrades");
 
         //JEI
         add("jei.cloche.chance", "Chance: %s");

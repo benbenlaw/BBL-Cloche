@@ -15,6 +15,7 @@ import net.minecraft.client.data.models.model.ModelInstance;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
@@ -44,14 +45,13 @@ public class ClocheModelProvider extends ModelProvider {
 
         //Blocks
         createMachineBlock(ClocheBlocks.CLOCHE.get(), blockModels.blockStateOutput, blockModels.modelOutput);
-
     }
 
 
     //This is a great method for any SyncableBlocks that we use in the future in either Utility or other mods
     public void createMachineBlock(Block block, Consumer<BlockModelDefinitionGenerator> blockStateOutput, BiConsumer<Identifier, ModelInstance> modelOutput) {
-        TextureMapping idleTextureMapping = (new TextureMapping()).put(TextureSlot.TOP, (Cloche.identifier("block/machine_top"))).put(TextureSlot.SIDE, Cloche.identifier("block/machine_side_idle")).put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front"));
-        TextureMapping workingTextureMapping = (new TextureMapping()).put(TextureSlot.TOP, (Cloche.identifier("block/machine_top"))).put(TextureSlot.SIDE, Cloche.identifier("block/machine_side_working")).put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front"));
+        TextureMapping idleTextureMapping = (new TextureMapping()).put(TextureSlot.TOP, new Material(Cloche.identifier("block/machine_top"))).put(TextureSlot.SIDE, new Material(Cloche.identifier("block/machine_side_idle"))).put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front"));
+        TextureMapping workingTextureMapping = (new TextureMapping()).put(TextureSlot.TOP, new Material(Cloche.identifier("block/machine_top"))).put(TextureSlot.SIDE, new Material(Cloche.identifier("block/machine_side_working"))).put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front"));
 
         MultiVariant multivariant = plainVariant(ModelTemplates.CUBE_ORIENTABLE.create(block, idleTextureMapping, modelOutput));
         MultiVariant multivariant1 = plainVariant(ModelTemplates.CUBE_ORIENTABLE_VERTICAL.create(block, idleTextureMapping, modelOutput));

@@ -20,9 +20,7 @@ public class ClocheLootTableProvider extends VanillaBlockLoot {
 
     @Override
     protected void generate() {
-
         this.dropSelf(ClocheBlocks.CLOCHE.get());
-
     }
 
     @Override

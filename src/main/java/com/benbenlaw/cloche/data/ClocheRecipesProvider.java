@@ -232,7 +232,7 @@ public class ClocheRecipesProvider extends RecipeProvider {
         createSingleItemRecipe(new ItemStackTemplate(Items.CLOSED_EYEBLOSSOM), tag(ItemTags.DIRT), 1200, "closed_eyeblossom");
         createSingleItemRecipe(new ItemStackTemplate(Items.OPEN_EYEBLOSSOM), tag(ItemTags.DIRT), 1200, "open_eyeblossom");
         createSingleItemRecipe(new ItemStackTemplate(Items.WILDFLOWERS), tag(ItemTags.DIRT), 1200, "wildflowers");
-        createSingleItemRecipe(new ItemStackTemplate(Items.GOLDEN_DANDELION), Ingredient.of(Items.GOLD_BLOCK), 1200, "golden_dandelion");
+        createSingleItemRecipe(new ItemStackTemplate(Items.GOLDEN_DANDELION), tag(ItemTags.DIRT), 1200, "golden_dandelion", Ingredient.of(Items.GOLD_BLOCK));
     }
 
     public void createSingleItemRecipe(ItemStackTemplate item, Ingredient soil, int duration, String name) {
@@ -242,6 +242,17 @@ public class ClocheRecipesProvider extends RecipeProvider {
 
         ClocheRecipeProvider.clocheRecipeBuilder(Ingredient.of(item.typeHolder().value()), soil,
                         null, duration, SINGLE_ITEM_RESULTS, null)
+                .save(output, "cloche/" + name);
+
+    }
+
+    public void createSingleItemRecipe(ItemStackTemplate item, Ingredient soil, int duration, String name, Ingredient catalyst) {
+
+        NonNullList<ChanceResult> SINGLE_ITEM_RESULTS = NonNullList.create();
+        SINGLE_ITEM_RESULTS.add(new ChanceResult(item, 1.0f));
+
+        ClocheRecipeProvider.clocheRecipeBuilder(Ingredient.of(item.typeHolder().value()), soil,
+                        catalyst, duration, SINGLE_ITEM_RESULTS, null)
                 .save(output, "cloche/" + name);
 
     }

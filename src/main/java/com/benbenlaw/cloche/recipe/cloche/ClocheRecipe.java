@@ -64,7 +64,6 @@ public record ClocheRecipe(Ingredient seed, Ingredient soil, Optional<Ingredient
             outputs.add(ChanceResult.read(buffer));
         }
 
-        // ---- OPTIONAL TEMPLATE ----
         Optional<ItemStackTemplate> shearsResult;
         if (buffer.readBoolean()) {
             shearsResult = Optional.of(ItemStackTemplate.STREAM_CODEC.decode(buffer));
@@ -87,7 +86,6 @@ public record ClocheRecipe(Ingredient seed, Ingredient soil, Optional<Ingredient
             output.write(buffer);
         }
 
-        // ---- OPTIONAL TEMPLATE ----
         if (recipe.shearsResult.isPresent()) {
             buffer.writeBoolean(true);
             ItemStackTemplate.STREAM_CODEC.encode(buffer, recipe.shearsResult.get());

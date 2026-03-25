@@ -5,7 +5,7 @@ import com.benbenlaw.core.Core;
 import com.benbenlaw.core.screen.util.DurationTooltip;
 import com.benbenlaw.core.screen.util.TooltipArea;
 import com.benbenlaw.core.util.MouseUtil;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
@@ -33,7 +33,9 @@ public class ClocheScreen extends AbstractContainerScreen<ClocheMenu> {
     }
 
     @Override
-    protected void renderBg(GuiGraphics guiGraphics, float v, int i, int i1) {
+    public void extractBackground(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float a) {
+        super.extractBackground(guiGraphics, mouseX, mouseY, a);
+
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
@@ -45,18 +47,17 @@ public class ClocheScreen extends AbstractContainerScreen<ClocheMenu> {
     }
 
     @Override
-    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTick) {
+        super.extractRenderState(guiGraphics, mouseX, mouseY, partialTick);
+
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        renderBackground(guiGraphics, mouseX, mouseY, delta);
-        super.render(guiGraphics, mouseX, mouseY, delta);
-        renderTooltip(guiGraphics, mouseX, mouseY);
         renderSlotTooltips(guiGraphics, mouseX, mouseY, x, y);
         DurationTooltip.renderDurationTooltip(guiGraphics, mouseX, mouseY, x, y, 155, 5, menu.data.get(0), menu.data.get(1));
     }
 
-    private void renderSlotTooltips(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
+    private void renderSlotTooltips(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, int x, int y) {
         List<TooltipArea> tooltipAreas = new ArrayList<>();
 
         tooltipAreas.add(new TooltipArea(8, 17, 16, 16, "tooltip.cloche.seed_slot"));
@@ -77,7 +78,7 @@ public class ClocheScreen extends AbstractContainerScreen<ClocheMenu> {
                     Component text = Component.translatable(area.translationKey);
                     FormattedCharSequence sequence = text.getVisualOrderText();
                     List<ClientTooltipComponent> tooltipLines = List.of(ClientTooltipComponent.create(sequence));
-                    guiGraphics.renderTooltip(this.font, tooltipLines, mouseX, mouseY, DefaultTooltipPositioner.INSTANCE, null );
+                    guiGraphics.tooltip(this.font, tooltipLines, mouseX, mouseY, DefaultTooltipPositioner.INSTANCE, null );
                 }
             }
         }

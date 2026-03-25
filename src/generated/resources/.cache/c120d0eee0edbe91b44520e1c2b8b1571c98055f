@@ -1,4 +1,4 @@
-// 26.1-snapshot-6	2026-03-02T18:17:37.8619821	cloche Recipes
+// 26.1-pre-3	2026-03-25T17:33:42.8260579	cloche Recipes
 18394310e6161e2d784ded251ef1476b1bc4cbfd data/cloche/advancement/recipes/cloche/cloche/cloche/acacia_sapling.json
 c1aa446f03b53db42f75a87eda7d668d649bbe7f data/cloche/advancement/recipes/cloche/cloche/cloche/allium.json
 2bc69bb8e5cac7c93926ec22ca88ca3b768bbcef data/cloche/advancement/recipes/cloche/cloche/cloche/azure_bluet.json
@@ -85,7 +85,7 @@ b05f7431b8598ac26d84dd7b214dd1dbc2710feb data/cloche/recipe/cloche/cloche/dark_o
 671ca8bd7e0e243ad8f44f383895d2421249ca65 data/cloche/recipe/cloche/cloche/fern.json
 8eee570f2a0de58669868c17057236afe196eaf9 data/cloche/recipe/cloche/cloche/firefly_bush.json
 678d92c6e4585cc33ef0eedccc98c37e4f2ce1f0 data/cloche/recipe/cloche/cloche/glow_lichen.json
-2291b32795e86521f3aa5ecdd6fc47b0a9ee07c6 data/cloche/recipe/cloche/cloche/golden_dandelion.json
+b21178a04154d0b605e29298121f17a1f46a98b2 data/cloche/recipe/cloche/cloche/golden_dandelion.json
 02d20018e2bac281171c3789edf35067afa111ac data/cloche/recipe/cloche/cloche/jungle_sapling.json
 a06781e4d8d04269c71ae5dd9c559b2dc52fd928 data/cloche/recipe/cloche/cloche/kelp.json
 d75e16fca711fe9e9cb807592b839e6d7ec815eb data/cloche/recipe/cloche/cloche/lilac.json

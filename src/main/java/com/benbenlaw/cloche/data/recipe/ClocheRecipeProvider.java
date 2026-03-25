@@ -26,14 +26,14 @@ import java.util.Optional;
 
 public class ClocheRecipeProvider implements RecipeBuilder {
 
-    protected String group;
-    protected Ingredient seed;
-    protected Ingredient soil;
-    protected Optional<Ingredient> catalyst;
-    protected int duration;
-    protected NonNullList<ChanceResult> results;
+    public String group;
+    public Ingredient seed;
+    public Ingredient soil;
+    public Optional<Ingredient> catalyst;
+    public int duration;
+    public NonNullList<ChanceResult> results;
     protected final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
-    protected Optional<ItemStackTemplate> shearsResult;
+    public Optional<ItemStackTemplate> shearsResult;
 
     public ClocheRecipeProvider(Ingredient seed, Ingredient soil, Ingredient catalyst, int duration, NonNullList<ChanceResult> results, ItemStackTemplate shearsResult) {
         this.seed = seed;

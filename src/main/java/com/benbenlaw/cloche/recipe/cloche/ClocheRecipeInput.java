@@ -21,4 +21,5 @@ public class ClocheRecipeInput implements RecipeInput {
     public int size() {
         return handler.size();
     }
+
 }

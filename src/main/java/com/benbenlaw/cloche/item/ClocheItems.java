@@ -17,5 +17,4 @@ public class ClocheItems {
     public static final DeferredItem<Item> SHEARS_UPGRADE = ITEMS.registerSimpleItem("shears_upgrade");
     public static final DeferredItem<Item> NO_OTHER_DROPS_UPGRADE = ITEMS.registerSimpleItem("no_other_drops_upgrade");
     public static final DeferredItem<Item> MUTATION_UPGRADE = ITEMS.registerSimpleItem("mutation_upgrade");
-
 }

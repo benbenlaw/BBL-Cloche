@@ -41,7 +41,7 @@ public class ClocheLangProvider extends LanguageProvider {
         add("tooltip.cloche.cloche", "Used to grow crops, can be upgraded with various upgrades");
 
         //JEI
-        add("jei.cloche.chance", "Chance: %s");
+        add("jei.cloche.chance", "Chance: %s%%");
         add("jei.cloche.main_output", "Effected by Main Output Upgrade");
         add("jei.cloche.shears_result", "Drop added by Shears Upgrade");
         add("jei.cloche.seeds_results", "Removed by No Seeds Upgrade");

@@ -1,6 +1,8 @@
 package com.benbenlaw.cloche.event.client;
 
 import com.benbenlaw.cloche.Cloche;
+import com.benbenlaw.cloche.block.ClocheBlockEntities;
+import com.benbenlaw.cloche.block.entity.renderer.ClocheBlockEntityRenderer;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -11,6 +13,6 @@ public class ClientListener {
 
     @SubscribeEvent
     public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
-        //event.registerBlockEntityRenderer(ClocheBlockEntities.CLOCHE_BLOCK_ENTITY.get(), ClocheBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(ClocheBlockEntities.CLOCHE_BLOCK_ENTITY.get(), ClocheBlockEntityRenderer::new);
     }
 }

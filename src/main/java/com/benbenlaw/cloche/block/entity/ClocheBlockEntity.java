@@ -58,6 +58,7 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
         @Override
         protected void onContentsChanged(int index, ItemStack previousContents) {
             updateCachedRecipe();
+            progress = 0;
             super.onContentsChanged(index, previousContents);
         }
     };
@@ -115,9 +116,12 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
 
         if (cachedRecipe != null && canInsertOutputs(outputs)) {
             CropData cropData = CropData.fromItemStack(inputHandler.getResource(SEED_SLOT).toStack());
-
             maxProgress = applySpeedModifier(cachedRecipe.value().duration(),cropData.speedModifier());
             progress++;
+
+            //This is to update the client with progress, i dont like this !
+            if (progress % 20 == 0) sync();
+
             if (progress >= maxProgress) craftItem();
         } else {
             progress = 0;

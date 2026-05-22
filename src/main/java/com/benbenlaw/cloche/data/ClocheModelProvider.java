@@ -11,10 +11,7 @@ import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
-import net.minecraft.client.data.models.model.ModelInstance;
-import net.minecraft.client.data.models.model.ModelTemplates;
-import net.minecraft.client.data.models.model.TextureMapping;
-import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
@@ -22,6 +19,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
+import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -32,6 +30,9 @@ public class ClocheModelProvider extends ModelProvider {
     public ClocheModelProvider(PackOutput output) {
         super(output, Cloche.MOD_ID);
     }
+
+    public static final ModelTemplate CUBE_TOP_SIDE_FRONT_INNER = create("cube_bottom_top_inner_faces", TextureSlot.TOP, TextureSlot.SIDE, TextureSlot.BOTTOM);
+
 
     @Override
     protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
@@ -50,13 +51,13 @@ public class ClocheModelProvider extends ModelProvider {
 
     //This is a great method for any SyncableBlocks that we use in the future in either Utility or other mods
     public void createMachineBlock(Block block, Consumer<BlockModelDefinitionGenerator> blockStateOutput, BiConsumer<Identifier, ModelInstance> modelOutput) {
-        TextureMapping idleTextureMapping = (new TextureMapping()).put(TextureSlot.TOP, new Material(Cloche.identifier("block/machine_top"))).put(TextureSlot.SIDE, new Material(Cloche.identifier("block/machine_side_idle"))).put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front"));
-        TextureMapping workingTextureMapping = (new TextureMapping()).put(TextureSlot.TOP, new Material(Cloche.identifier("block/machine_top"))).put(TextureSlot.SIDE, new Material(Cloche.identifier("block/machine_side_working"))).put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front"));
+        TextureMapping idleTextureMapping = (new TextureMapping()).put(TextureSlot.TOP, new Material(Cloche.identifier("block/machine_top"))).put(TextureSlot.SIDE, new Material(Cloche.identifier("block/machine_side_idle"))).put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front")).put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(block, "_top"));
+        TextureMapping workingTextureMapping = (new TextureMapping()).put(TextureSlot.TOP, new Material(Cloche.identifier("block/machine_top"))).put(TextureSlot.SIDE, new Material(Cloche.identifier("block/machine_side_working"))).put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front")).put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(block, "_top"));
 
-        MultiVariant multivariant = plainVariant(ModelTemplates.CUBE_ORIENTABLE.create(block, idleTextureMapping, modelOutput));
+        MultiVariant multivariant = plainVariant(CUBE_TOP_SIDE_FRONT_INNER.create(block, idleTextureMapping, modelOutput));
         MultiVariant multivariant1 = plainVariant(ModelTemplates.CUBE_ORIENTABLE_VERTICAL.create(block, idleTextureMapping, modelOutput));
 
-        MultiVariant workingVariant = plainVariant(ModelTemplates.CUBE_ORIENTABLE.createWithSuffix(block, "_working", workingTextureMapping, modelOutput));
+        MultiVariant workingVariant = plainVariant(CUBE_TOP_SIDE_FRONT_INNER.createWithSuffix(block, "_working", workingTextureMapping, modelOutput));
         MultiVariant workingVariant1 = plainVariant(ModelTemplates.CUBE_ORIENTABLE_VERTICAL.createWithSuffix(block, "_working", workingTextureMapping, modelOutput));
 
         blockStateOutput.accept(
@@ -76,5 +77,10 @@ public class ClocheModelProvider extends ModelProvider {
                                 .select(Direction.WEST,true, workingVariant.with(Y_ROT_270))));
 
     }
+
+    public static ModelTemplate create(String id, TextureSlot... slots) {
+        return new ModelTemplate(Optional.of(ModelLocationUtils.decorateBlockModelLocation(id)), Optional.empty(), slots);
+    }
+
 
 }

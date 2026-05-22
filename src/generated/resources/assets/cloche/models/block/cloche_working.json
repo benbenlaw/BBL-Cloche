@@ -1,7 +1,7 @@
 {
-  "parent": "minecraft:block/orientable",
+  "parent": "minecraft:block/cube_bottom_top_inner_faces",
   "textures": {
-    "front": "cloche:block/cloche_front",
+    "bottom": "cloche:block/cloche_top",
     "side": "cloche:block/machine_side_working",
     "top": "cloche:block/machine_top"
   }

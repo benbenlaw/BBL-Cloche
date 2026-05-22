@@ -1,4 +1,4 @@
-// 26.1.1	2026-04-05T14:36:18.3108749	Model Definitions - cloche
+// 26.1.2	2026-05-22T16:18:29.0228914	Model Definitions - cloche
 5661042cc15f50ae422fe0531b8582dde06ecafe assets/cloche/blockstates/cloche.json
 ab0ef40a64f73cda6804c87b71ca18b7edd3cfd5 assets/cloche/items/cloche.json
 9411549e91938657a24d8336792a94db380e02af assets/cloche/items/main_output_upgrade.json
@@ -6,9 +6,9 @@ ab0ef40a64f73cda6804c87b71ca18b7edd3cfd5 assets/cloche/items/cloche.json
 d201095dc9825680156eff28def8b9c3e965c806 assets/cloche/items/no_other_drops_upgrade.json
 402461007b03796b0f66fea2b93e7368aee64d0c assets/cloche/items/no_seeds_upgrade.json
 33fbdef6a3453191399ac93a769f2df2d3b46d2c assets/cloche/items/shears_upgrade.json
-2141fbfa02f2c1ff2e5db760182d0d7472a01ae9 assets/cloche/models/block/cloche.json
+42be6cedea8004650cbfe971d189de45c758e2b8 assets/cloche/models/block/cloche.json
 a48baf97c524065ae16e478eb3bcd8d0b67e312d assets/cloche/models/block/cloche_vertical.json
-a88988eea09f55fe9d73a0344d5715f8e40ad3f6 assets/cloche/models/block/cloche_working.json
+e6c16ef0d0af637fcf7a130bf176eea8da68700d assets/cloche/models/block/cloche_working.json
 63c5c4b4b873a39aa6a1e609c9673cced6bf96f0 assets/cloche/models/block/cloche_working_vertical.json
 0c589c04ccff7278e03df2eedefe000e157933a8 assets/cloche/models/item/main_output_upgrade.json
 6dcf85bcfb66902dcdbd6aa34876d843e672138b assets/cloche/models/item/mutation_upgrade.json

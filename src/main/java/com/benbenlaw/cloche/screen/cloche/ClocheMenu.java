@@ -54,9 +54,9 @@ public class ClocheMenu extends SimpleAbstractContainerMenu {
 
         assert entity != null;
 
-        this.addSlot(new SeedSlot(blockEntity.getInputHandler(), blockEntity.getInputHandler()::set, ClocheBlockEntity.SEED_SLOT, 8, 17));
-        this.addSlot(new SoilSlot(blockEntity.getInputHandler(), blockEntity.getInputHandler()::set, ClocheBlockEntity.SOIL_SLOT, 8, 17 + 18));
-        this.addSlot(new CatalystSlot(blockEntity.getInputHandler(), blockEntity.getInputHandler()::set, ClocheBlockEntity.CATALYST_SLOT, 8, 17 + 36));
+        this.addSlot(new SeedSlot(level, blockEntity.getInputHandler(), blockEntity.getInputHandler()::set, ClocheBlockEntity.SEED_SLOT, 8, 17));
+        this.addSlot(new SoilSlot(level, blockEntity.getInputHandler(), blockEntity.getInputHandler()::set, ClocheBlockEntity.SOIL_SLOT, 8, 17 + 18));
+        this.addSlot(new CatalystSlot(level, blockEntity.getInputHandler(), blockEntity.getInputHandler()::set, ClocheBlockEntity.CATALYST_SLOT, 8, 17 + 36));
 
         for (int i = 0; i < 3; i++) {
             this.addSlot(new InputSlot(blockEntity.getUpgradeHandler(), blockEntity.getUpgradeHandler()::set, i, 35 + i * 18, 53) {

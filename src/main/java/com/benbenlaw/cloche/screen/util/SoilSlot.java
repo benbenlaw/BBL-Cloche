@@ -1,36 +1,47 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
-
 package com.benbenlaw.cloche.screen.util;
 
 import com.benbenlaw.cloche.recipe.ClocheRecipeCache;
+import com.benbenlaw.cloche.recipe.ClocheRecipes;
 import com.benbenlaw.cloche.recipe.cloche.ClocheRecipe;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.transfer.IndexModifier;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ResourceHandlerSlot;
 
 import java.util.List;
+import java.util.Objects;
 
 public class SoilSlot extends ResourceHandlerSlot {
 
-    public SoilSlot(ResourceHandler<ItemResource> handler, IndexModifier<ItemResource> slotModifier, int handlerSlot, int xPosition, int yPosition) {
+    private final Level level;
+
+    public SoilSlot(Level level, ResourceHandler<ItemResource> handler, IndexModifier<ItemResource> slotModifier, int handlerSlot, int xPosition, int yPosition) {
         super(handler, slotModifier, handlerSlot, xPosition, yPosition);
+        this.level = level;
     }
 
     @Override
     public boolean mayPlace(ItemStack itemStack) {
 
-        List<Ingredient> seeds = ClocheRecipeCache.getRecipes().stream().map(ClocheRecipe::soil).filter(seed -> seed.test(itemStack)).toList();
+        List<ClocheRecipe> recipes = level.isClientSide()
+                ? ClocheRecipeCache.getRecipes().stream().toList()
+                : Objects.requireNonNull(level.getServer()).getRecipeManager().getRecipes().stream()
+                .filter(recipe -> recipe.value().getType() == ClocheRecipes.CLOCHE_TYPE.get())
+                .filter(recipe -> recipe.value() instanceof ClocheRecipe)
+                .map(recipe -> (ClocheRecipe) recipe.value())
+                .toList();
 
-        for (Ingredient seed : seeds) {
-            if (seed.test(itemStack)) {
+        List<Ingredient> soils = recipes.stream()
+                .map(ClocheRecipe::soil)
+                .filter(soil -> soil.test(itemStack))
+                .toList();
+
+        for (Ingredient soil : soils) {
+            if (soil.test(itemStack)) {
                 return true;
             }
         }

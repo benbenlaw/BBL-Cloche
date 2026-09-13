@@ -265,7 +265,7 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
         }
 
         // Cap at 100
-        outputMultiplier = Math.min(outputMultiplier, 100);
+        outputMultiplier = Math.min(outputMultiplier, 500);
         speedModifier = Math.min(speedModifier, 100);
 
         mutated.set(ClocheDataComponent.CROP_DATA.get(), new CropData(outputMultiplier, speedModifier));

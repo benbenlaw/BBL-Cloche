@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 public record CropData(int outputMultiplier, int speedModifier) {
 
     public static final Codec<CropData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-        Codec.intRange(0, 100).fieldOf("output_multiplier").forGetter(CropData::outputMultiplier),
+        Codec.intRange(0, 500).fieldOf("output_multiplier").forGetter(CropData::outputMultiplier),
         Codec.intRange(0, 100).fieldOf("speed_modifier").forGetter(CropData::speedModifier)
     ).apply(instance, CropData::new));
 
